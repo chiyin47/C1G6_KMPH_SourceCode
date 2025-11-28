@@ -25,6 +25,7 @@ public class DirectionsService {
                 .origin(origin)
                 .destination(destination)
                 .mode(TravelMode.DRIVING)
+                .alternatives(true) // Request alternative routes
                 .await();
         context.shutdown();
         return result;
