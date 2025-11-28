@@ -1,22 +1,50 @@
 /* frontend/src/App.css */
 
 .navbar {
+  /* Change padding: 1rem; to: */
+  padding: 3rem 1rem; /* 3rem Top/Bottom, 1rem Left/Right */
+
+  /* ... keep other styles ... */
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  padding: 1rem;
-  background-color: #4caf50;
+  background-color: #449d44;
   color: white;
+  position: relative;
 }
 
 .logo {
   font-weight: bold;
   font-size: 1.5rem;
+
+  /* Keep it glued to the left */
+  position: absolute;
+  left: 1rem;
+
+  /* ADD THESE 2 LINES to vertically center it perfectly: */
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.logo a,
+.logo a:visited {
+  color: white;
+  text-decoration: none;
+}
+.logo a {
+  display: flex;
+  align-items: center;
+}
+.logo-image {
+  height: 100px;
+  margin-right: 30px;
+  border-radius: 10px;
 }
 
 .menu {
   display: flex;
   gap: 1rem;
+  align-items: center;
 }
 
 .menu a {
