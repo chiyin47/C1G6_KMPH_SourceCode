@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import MapComponent from './MapComponent';
+import AutocompleteInput from './AutocompleteInput';
 
 function GreenRouteDemo() {
   const [origin, setOrigin] = useState('');
@@ -28,6 +29,12 @@ function GreenRouteDemo() {
     const temp = origin;
     setOrigin(destination);
     setDestination(temp);
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      handleClick();
+    }
   };
 
   const handleClick = () => {
@@ -62,21 +69,28 @@ function GreenRouteDemo() {
 
       <div>
         <label>Origin:</label>
-        <input value={origin} onChange={e => setOrigin(e.target.value)} placeholder="e.g., Kuala Lumpur"/>
+        <AutocompleteInput value={origin} onChange={setOrigin} onKeyDown={handleKeyPress} placeholder="e.g., Kuala Lumpur"/>
       </div>
 
       <button onClick={handleReverse} style={{ margin: '10px 0' }}>Reverse</button>
 
       <div>
         <label>Destination:</label>
-        <input value={destination} onChange={e => setDestination(e.target.value)} placeholder="e.g., Johor Bahru"/>
+        <AutocompleteInput value={destination} onChange={setDestination} onKeyDown={handleKeyPress} placeholder="e.g., Johor Bahru"/>
       </div>
 
       <div>
         <label>Stops:</label>
         {stops.map((stop, index) => (
-          <div key={index}>
-            <input value={stop} onChange={e => handleStopChange(index, e.target.value)} placeholder={`Stop ${index + 1}`}/>
+          <div key={index} style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
+            <div style={{ flex: 1 }}>
+              <AutocompleteInput 
+                value={stop} 
+                onChange={value => handleStopChange(index, value)} 
+                onKeyDown={handleKeyPress} 
+                placeholder={`Stop ${index + 1}`}
+              />
+            </div>
             <button onClick={() => removeStop(index)} style={{ marginLeft: '10px' }}>Remove</button>
           </div>
         ))}
@@ -107,3 +121,4 @@ function GreenRouteDemo() {
 }
 
 export default GreenRouteDemo;
+

@@ -43,6 +43,14 @@ public class RouteController {
                 }
             }
 
+            List<RouteResponse.LatLng> waypointCoords = new ArrayList<>();
+            if (route.legs.length > 1) {
+                for (int i = 0; i < route.legs.length - 1; i++) {
+                    DirectionsLeg leg = route.legs[i];
+                    waypointCoords.add(new RouteResponse.LatLng(leg.endLocation.lat, leg.endLocation.lng));
+                }
+            }
+
             long totalDistance = 0;
             long totalDuration = 0;
             for (DirectionsLeg leg : route.legs) {
@@ -60,6 +68,7 @@ public class RouteController {
             response.setDuration(readableDuration);
             response.setFuelUsed("Estimated fuel: " + Math.round(totalDistance / 1000 * 0.07) + " L");
             response.setCoordinates(coords);
+            response.setWaypoints(waypointCoords);
 
             return response;
 

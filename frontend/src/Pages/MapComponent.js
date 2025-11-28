@@ -27,6 +27,13 @@ const MapComponent = ({ route }) => {
       />
       <Marker position={routeCoordinates[0]}><Popup>Origin</Popup></Marker>
       <Marker position={routeCoordinates[routeCoordinates.length - 1]}><Popup>Destination</Popup></Marker>
+      
+      {route.waypoints && route.waypoints.map((waypoint, index) => (
+        <Marker key={index} position={[waypoint.lat, waypoint.lng]}>
+          <Popup>Stop {index + 1}</Popup>
+        </Marker>
+      ))}
+
       <Polyline positions={routeCoordinates} color="green" />
     </MapContainer>
   );

@@ -8,10 +8,12 @@ public class RouteResponse {
     private String duration;
     private String fuelUsed;
     private List<LatLng> coordinates;
+    private List<LatLng> waypoints;
 
     public static class LatLng {
         private double lat;
         private double lng;
+
 
         public LatLng(double lat, double lng) {
             this.lat = lat;
@@ -66,5 +68,13 @@ public class RouteResponse {
 
     public void setCoordinates(List<LatLng> coordinates) {
         this.coordinates = coordinates;
+    }
+
+    public List<LatLng> getWaypoints() {
+        return waypoints;
+    }
+
+    public void setWaypoints(List<LatLng> waypoints) {
+        this.waypoints = waypoints;
     }
 }
