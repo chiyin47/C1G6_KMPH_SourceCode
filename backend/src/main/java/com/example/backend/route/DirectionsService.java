@@ -4,6 +4,7 @@ import com.google.maps.DirectionsApi;
 import com.google.maps.DirectionsApiRequest;
 import com.google.maps.GeoApiContext;
 import com.google.maps.model.DirectionsResult;
+import com.google.maps.model.TrafficModel;
 import com.google.maps.model.TravelMode;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -24,23 +25,28 @@ public class DirectionsService {
                 .readTimeout(5, TimeUnit.SECONDS)
                 .build();
 
-        DirectionsApiRequest request = DirectionsApi.newRequest(context)
+        // === NEW: request multiple alternative routes ===
+        DirectionsApiRequest req = DirectionsApi.newRequest(context)
                 .origin(origin)
                 .destination(destination)
-                .mode(TravelMode.DRIVING)
-                .alternatives(true)
-                .departureTime(Instant.now());
+                .alternatives(true) // <-- IMPORTANT
+                .departureTime(Instant.now()) // enables live traffic
+                .trafficModel(TrafficModel.BEST_GUESS)
+                .mode(TravelMode.DRIVING);
 
+        // Keep your existing waypoint support
         if (waypoints != null && waypoints.length > 0) {
-            request.waypoints(waypoints);
+            req.waypoints(waypoints);
         }
 
-        DirectionsResult result = request.await();
+        // Execute request
+        DirectionsResult result = req.await();
 
         context.shutdown();
         return result;
     }
 
+    // Overloaded version (no waypoints)
     public DirectionsResult getDirections(String origin, String destination) throws Exception {
         return getDirections(origin, destination, new String[0]);
     }

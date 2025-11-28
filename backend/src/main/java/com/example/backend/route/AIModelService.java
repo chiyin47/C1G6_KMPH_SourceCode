@@ -15,7 +15,7 @@ public class AIModelService {
   @Value("${gemini.api.key}")
   private String apiKey;
 
-  @Value("${gemini.model:gemini-1.5-pro}")
+  @Value("${gemini.model:gemini-2.0-flash-lite}")
   private String model;
 
   private final RestTemplate restTemplate = new RestTemplate();
