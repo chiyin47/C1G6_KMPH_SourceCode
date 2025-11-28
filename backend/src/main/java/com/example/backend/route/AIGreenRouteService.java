@@ -64,8 +64,13 @@ public class AIGreenRouteService {
             String aiResponse = aiModelService.getAIResponse(prompt);
             System.out.println("Raw AI Response for route " + routeNumber + ":\n" + aiResponse);
 
-            String fuelPrediction;
-            double parsedFuel;
+            String fuelPrediction = "Fuel prediction unavailable";
+            double parsedFuel = Double.MAX_VALUE;
+
+            String efficiencyClassification = "N/A";
+            String drivingRecommendation = "No specific recommendation.";
+            String peakHoursAdvice = "No specific peak hour advice.";
+            String fullPredictionSummary = "No AI prediction available.";
 
             // Attempt to parse AI response for fuel prediction
             boolean aiFuelParsedSuccessfully = false;
@@ -84,16 +89,13 @@ public class AIGreenRouteService {
                 } else {
                     System.err.println("AI response did not contain expected 'Fuel: X liters' pattern for route " + routeNumber + ". Resorting to rough estimation. Response snippet: " + aiResponse.substring(0, Math.min(aiResponse.length(), 200)) + "...");
                 }
-            }
 
-            // If AI fuel prediction failed or was not found, use a rough estimation
-            if (!aiFuelParsedSuccessfully) {
-                // Rough estimation: 0.08 liters per km + 0.0005 liters per second of duration (for idling/traffic)
-                // This is a very rough heuristic to ensure a numeric value is always present.
-                parsedFuel = (distanceMeters / 1000.0) * 0.08 + (durationSeconds * 0.0005);
-                fuelPrediction = String.format("Estimated: %.2f liters", parsedFuel);
-                System.out.println("Using rough fuel estimation for route " + routeNumber + ": " + fuelPrediction);
-            }
+                // If AI fuel prediction failed or was not found, use a rough estimation (this block is now correctly inside the main if)
+                if (!aiFuelParsedSuccessfully) {
+                    parsedFuel = (distanceMeters / 1000.0) * 0.08 + (durationSeconds * 0.0005);
+                    fuelPrediction = String.format("Estimated: %.2f liters", parsedFuel);
+                    System.out.println("Using rough fuel estimation for route " + routeNumber + ": " + fuelPrediction);
+                }
 
                 // Extract Efficiency
                 Pattern efficiencyPattern = Pattern.compile("Efficiency: (.+)");
@@ -140,7 +142,8 @@ public class AIGreenRouteService {
                     drivingRecommendation,
                     peakHoursAdvice
                 );
-            }
+            } // This is the correct closing brace for if (aiResponse != null && !aiResponse.isEmpty())
+
 
             RouteResponse routeResponse = new RouteResponse();
             routeResponse.setRouteNumber(routeNumber++);
