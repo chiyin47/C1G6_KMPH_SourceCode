@@ -1,56 +1,66 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const container = document.createElement("div");
-    container.style.maxWidth = "900px";
-    container.style.margin = "40px auto";
-    container.style.lineHeight = "1.6";
-    container.style.fontFamily = "Arial, sans-serif";
+import React from "react";
+import "./CssPages/AboutPage.css";
 
-    container.innerHTML = `
-        <h1>About ECORoute</h1>
-        <h2>Making Every Journey Smarter</h2>
+function AboutPage() {
+  return (
+    <div className="about-container">
+      <h1>About ECORoute</h1>
+      <h2>Smarter Journeys for a Greener Future</h2>
 
+      <div className="section-box">
         <p>
-            We are a group of passionate developers based in Malaysia who recognized
-            a critical flaw in everyday navigation. For too long, commuters have been
-            forced to choose routes only based on speed, leading to hidden fuel costs
-            and invisible environmental damage. ECORoute was born to change that.
+          ECORoute was created by a team of passionate developers in Malaysia who
+          recognized a major gap in today’s navigation systems. Traditional
+          navigation apps focus only on speed—overlooking hidden fuel costs and
+          the environmental impact of every trip. ECORoute exists to fix that.
         </p>
+      </div>
 
-        <h2>Our Mission: Transparent Travel</h2>
+      <h2>Our Mission</h2>
+      <div className="section-box">
         <p>
-            Our mission is to bridge the gap between user priorities—saving money,
-            saving time—and environmental responsibility. We provide the most
-            transparent routing decisions so users can make the best choice for their
-            wallet and the planet.
+          Our mission is to empower commuters with transparent routing choices
+          that balance time, fuel efficiency, and sustainability. We believe that
+          the right information helps users make decisions that benefit both their
+          wallet and the planet.
         </p>
+      </div>
 
-        <h2>The ECORoute Difference</h2>
+      <h2>What Makes ECORoute Different</h2>
+      <div className="section-box">
+        <p>Every route is analyzed based on:</p>
         <ul>
-            <li>Time</li>
-            <li>Distance</li>
-            <li>Estimated Fuel Consumption</li>
-            <li>Estimated CO₂ Emission</li>
+          <li>Travel Time</li>
+          <li>Distance</li>
+          <li>Estimated Fuel Consumption</li>
+          <li>Estimated CO₂ Emissions</li>
         </ul>
-
         <p>
-            By factoring in your specific car model and real-time traffic patterns,
-            ECORoute enables you to choose the most efficient travel path.
+          By combining real-time traffic data with your specific vehicle model,
+          ECORoute helps you select the most efficient and eco-friendly path.
         </p>
+      </div>
 
-        <h2>Driving Sustainable Change</h2>
+      <h2>Driving Sustainable Change</h2>
+      <div className="section-box">
         <p>
-            Using ECORoute helps reduce fuel waste, lower emissions, and minimize
-            air pollution. We believe small changes in daily travel behavior can
-            create a huge impact on our environment.
+          Every optimized trip contributes to reduced fuel waste, lower emissions,
+          and cleaner air. Our goal is simple: to encourage small, meaningful
+          changes in daily travel that collectively create a positive
+          environmental impact.
         </p>
+      </div>
 
-        <h2>Meet the Team</h2>
+      <h2>Meet the Team</h2>
+      <div className="section-box">
         <p>
-            We are <strong>Team KMPH</strong> — dedicated to building smart,
-            sustainable and impactful solutions for commuters in Southeast Asia.
-            Thank you for driving with us!
+          We are <strong>Team KMPH</strong> — committed to building innovative,
+          impactful, and sustainable mobility solutions for Southeast Asia.
+          Thank you for choosing ECORoute.
         </p>
-    `;
+      </div>
+    </div>
+  );
+}
 
-    document.body.appendChild(container);
-});
+export default AboutPage;
