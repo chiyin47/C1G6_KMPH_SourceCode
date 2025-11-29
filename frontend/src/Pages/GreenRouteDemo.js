@@ -92,118 +92,124 @@ function GreenRouteDemo() {
       <div className='desc'>
         <p>Find the shortest route by distance to save fuel and get AI predictions.</p>
       </div>
-
-      <div className='origin'>
-        <label>Origin:</label>
-        <div className="input-card">
-          <AutocompleteInput
-            value={origin}
-            onChange={setOrigin}
-            onKeyDown={handleKeyPress}
-            placeholder="Enter origin location..."
-          />
-        </div>
-      </div>
-
-      <div className='reverse-addstop-container'>
-        <button onClick={handleReverse}>Reverse</button>
-        <button onClick={addStop}>Add Stop</button>
-      </div>
-
-      <div className='destination'>
-        <label>Destination:</label>
-        <div className="input-card">
-          <AutocompleteInput
-            value={destination}
-            onChange={setDestination}
-            onKeyDown={handleKeyPress}
-            placeholder="Enter destination location..."
-          />
-        </div>
-      </div>
-
-      <div className='stops-container'>
-        <label>Stops:</label>
-        {stops.map((stop, index) => (
-          <div className="input-card" key={index}>
-            <AutocompleteInput
-              value={stop}
-              onChange={value => handleStopChange(index, value)}
-              onKeyDown={handleKeyPress}
-              placeholder={`Stop ${index + 1}`}
-            />
-            <button onClick={() => removeStop(index)}>Remove</button>
+      
+      <div className="main-content-container">
+        <div className="input-panel">
+          <div className='origin'>
+            <label>Origin:</label>
+            <div className="input-card">
+              <AutocompleteInput
+                value={origin}
+                onChange={setOrigin}
+                onKeyDown={handleKeyPress}
+                placeholder="Enter origin location..."
+              />
+            </div>
           </div>
-        ))}
-      </div>
 
-      <button onClick={handleClick} disabled={loading}>
-        {loading ? 'Finding Route...' : 'Get Green Routes'}
-      </button>
+          <div className='reverse-addstop-container'>
+            <button onClick={handleReverse}>Reverse</button>
+            <button onClick={addStop}>Add Stop</button>
+          </div>
 
-      {error && <div className='error-message'>{error}</div>}
+          <div className='destination'>
+            <label>Destination:</label>
+            <div className="input-card">
+              <AutocompleteInput
+                value={destination}
+                onChange={setDestination}
+                onKeyDown={handleKeyPress}
+                placeholder="Enter destination location..."
+              />
+            </div>
+          </div>
 
-      <div className='map-routes-container'>
-        <div className='map-container'>
-          {selectedRoute ? (
-            <MapComponent route={selectedRoute} />
-          ) : (
-            <div>Map will appear here after fetching a route</div>
-          )}
-        </div>
-
-        {routes.length > 0 && (
-          <div className='routes-list'>
-            <h3>Alternative Routes</h3>
-            {routes.map(route => (
-              <div
-                key={route.routeNumber}
-                className={selectedRoute && selectedRoute.routeNumber === route.routeNumber ? 'selected' : ''}
-                onClick={() => setSelectedRoute(route)}
-              >
-                <h4>
-                  Route {route.routeNumber}
-                  {route.color && (
-                    <span
-                      style={{
-                        marginLeft: '10px',
-                        height: '12px',
-                        width: '12px',
-                        backgroundColor: route.color,
-                        borderRadius: '50%',
-                        display: 'inline-block'
-                      }}
-                      title={`Efficiency: ${route.color}`}
-                    ></span>
-                  )}
-                </h4>
-                <p>{route.distance} • {route.duration} • {route.fuelUsed}</p>
+          <div className='stops-container'>
+            <label>Stops:</label>
+            {stops.map((stop, index) => (
+              <div className="input-card" key={index}>
+                <AutocompleteInput
+                  value={stop}
+                  onChange={value => handleStopChange(index, value)}
+                  onKeyDown={handleKeyPress}
+                  placeholder={`Stop ${index + 1}`}
+                />
+                <button onClick={() => removeStop(index)}>Remove</button>
               </div>
             ))}
           </div>
-        )}
-      </div>
 
-      {selectedRoute && (
-        <div className='selected-route-details'>
-          <h3>Selected Route</h3>
-          
-          <CO2Calculator 
-            distance={selectedRoute.distance}
-            duration={selectedRoute.duration}
-            fuelUsed={selectedRoute.fuelUsed}
-          />
-          
-          <div className='ai-prediction'>
-            <p><strong>AI Insight:</strong> {truncateText(selectedRoute.fuelSavingPrediction, 300)}</p>
-          </div>
-          
-          <div className='navigation-buttons'>
-            <button onClick={() => window.open(generateWazeUrl(selectedRoute), '_blank')} disabled={!selectedRoute}>Open in Waze</button>
-            <button onClick={() => window.open(generateGoogleMapsUrl(selectedRoute), '_blank')} disabled={!selectedRoute}>Open in Google Maps</button>
-          </div>
+          <button onClick={handleClick} disabled={loading}>
+            {loading ? 'Finding Route...' : 'Get Green Routes'}
+          </button>
+
+          {error && <div className='error-message'>{error}</div>}
         </div>
-      )}
+
+        <div className="display-panel">
+          <div className='map-routes-container'>
+            <div className='map-container'>
+              {selectedRoute ? (
+                <MapComponent route={selectedRoute} />
+              ) : (
+                <div>Map will appear here after fetching a route</div>
+              )}
+            </div>
+
+            {routes.length > 0 && (
+              <div className='routes-list'>
+                <h3>Alternative Routes</h3>
+                {routes.map(route => (
+                  <div
+                    key={route.routeNumber}
+                    className={selectedRoute && selectedRoute.routeNumber === route.routeNumber ? 'selected' : ''}
+                    onClick={() => setSelectedRoute(route)}
+                  >
+                    <h4>
+                      Route {route.routeNumber}
+                      {route.color && (
+                        <span
+                          style={{
+                            marginLeft: '10px',
+                            height: '12px',
+                            width: '12px',
+                            backgroundColor: route.color,
+                            borderRadius: '50%',
+                            display: 'inline-block'
+                          }}
+                          title={`Efficiency: ${route.color}`}
+                        ></span>
+                      )}
+                    </h4>
+                    <p>{route.distance} • {route.duration} • {route.fuelUsed}</p>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {selectedRoute && (
+            <div className='selected-route-details'>
+              <h3>Selected Route</h3>
+              
+              <CO2Calculator 
+                distance={selectedRoute.distance}
+                duration={selectedRoute.duration}
+                fuelUsed={selectedRoute.fuelUsed}
+              />
+              
+              <div className='ai-prediction'>
+                <p><strong>AI Insight:</strong> {truncateText(selectedRoute.fuelSavingPrediction, 300)}</p>
+              </div>
+              
+              <div className='navigation-buttons'>
+                <button onClick={() => window.open(generateWazeUrl(selectedRoute), '_blank')} disabled={!selectedRoute}>Open in Waze</button>
+                <button onClick={() => window.open(generateGoogleMapsUrl(selectedRoute), '_blank')} disabled={!selectedRoute}>Open in Google Maps</button>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
     </div>
   );
 }
