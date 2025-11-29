@@ -1,3 +1,9 @@
+# To try the app, please click the link below
+https://chiyin47.github.io/sdghackathon-1/
+
+Note* : If error 404 appears, please use the link above again to reenter
+
+
 # SDG-XI Hackathon Project
 
 This project is a submission for the SDG-XI Hackathon. It is a web application that helps users find the most fuel-efficient route between two points, thus contributing to the reduction of carbon emissions.
