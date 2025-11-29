@@ -4,15 +4,15 @@ import "./CssPages/AboutPage.css";
 function AboutPage() {
   return (
     <div className="about-container">
-      <h1>About ECORoute</h1>
+      <h1>About EcoRoute</h1>
       <h2>Smarter Journeys for a Greener Future</h2>
 
-      <div className="section-box">
+      <div ClassName="seCtion-box">
         <p>
-          ECORoute was created by a team of passionate developers in Malaysia who
+          EcoRoute was created by a team of passionate developers in Malaysia who
           recognized a major gap in today’s navigation systems. Traditional
           navigation apps focus only on speed—overlooking hidden fuel costs and
-          the environmental impact of every trip. ECORoute exists to fix that.
+          the environmental impact of every trip. EcoRoute exists to fix that.
         </p>
       </div>
 
@@ -26,7 +26,7 @@ function AboutPage() {
         </p>
       </div>
 
-      <h2>What Makes ECORoute Different</h2>
+      <h2>What Makes EcoRoute Different</h2>
       <div className="section-box">
         <p>Every route is analyzed based on:</p>
         <ul>
