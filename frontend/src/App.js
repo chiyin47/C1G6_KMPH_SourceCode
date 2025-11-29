@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import HomePage from "./Pages/HomePage";
 import HowItWorks from "./Pages/HowItWorks";
 import GreenRouteDemo from "./Pages/GreenRouteDemo";
-import CO2Calculator from "./Pages/CO2Calculator";
 import AboutPage from "./Pages/AboutPage";
 import './App.css';
 
@@ -28,7 +27,6 @@ function App() {
           <Link to="/">Home</Link>
           <Link to="/how-it-works">How it works</Link>
           <Link to="/demo">EcoRouter</Link>
-          <Link to="/calculator">CO₂ Calculator</Link>
           <Link to="/about">About us</Link>
         </div>
       </nav>
@@ -38,7 +36,6 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/how-it-works" element={<HowItWorks />} />
         <Route path="/demo" element={<GreenRouteDemo />} />
-        <Route path="/calculator" element={<CO2Calculator />} />
         <Route path="/about" element={<AboutPage />} />
       </Routes>
     </Router>

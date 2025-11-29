@@ -25,6 +25,119 @@
   color: #555;
 }
 
+/* Two-column layout for main content */
+.main-content-columns {
+  display: flex;
+  width: 100%;
+  max-width: 1200px; /* Adjust as needed */
+  gap: 25px; /* Space between columns */
+  margin-bottom: 30px;
+  flex-wrap: wrap; /* Allow columns to wrap on smaller screens */
+}
+
+.left-column-content,
+.right-column-content {
+  flex: 1; /* Distribute available space equally */
+  min-width: 300px; /* Minimum width before wrapping */
+  background-color: #ffffff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.left-column-content {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Space between elements in the left column */
+}
+
+.right-column-content .co2-calculator {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.right-column-content .co2-calculator h2 {
+  font-size: 28px;
+  color: #2c3e50;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+
+.right-column-content .co2-calculator label {
+  font-weight: 600;
+  color: #34495e;
+  margin-bottom: 5px;
+}
+
+.right-column-content .co2-calculator select,
+.right-column-content .co2-calculator input[type="number"] {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.right-column-content .co2-calculator button[type="submit"] {
+  background-color: #3498db;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-weight: 600;
+}
+
+.right-column-content .co2-calculator button[type="submit"]:hover {
+  background-color: #2980b9;
+}
+
+.right-column-content .co2-calculator .error {
+  color: #e74c3c;
+  font-weight: 600;
+}
+
+.right-column-content .co2-calculator p {
+  font-size: 18px;
+  font-weight: 500;
+  color: #2ecc71;
+}
+
+/* Navigation Buttons */
+.navigation-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+  justify-content: center;
+}
+
+.navigation-buttons button {
+  padding: 10px 15px;
+  font-size: 15px;
+  border-radius: 6px;
+  font-weight: 500;
+}
+
+/* Override general button styles for navigation buttons */
+.navigation-buttons button:nth-child(1) { /* Waze button */
+  background-color: #4CAF50; /* Waze green */
+  color: white;
+}
+.navigation-buttons button:nth-child(1):hover {
+  background-color: #45a049;
+}
+
+.navigation-buttons button:nth-child(2) { /* Google Maps button */
+  background-color: #db4437; /* Google Maps red */
+  color: white;
+}
+.navigation-buttons button:nth-child(2):hover {
+  background-color: #c23b32;
+}
+
 /* Input card containers */
 .origin,
 .destination,
