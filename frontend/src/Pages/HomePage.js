@@ -31,7 +31,7 @@ function HomePage() {
       {/* RIGHT HERO IMAGE */}
       <div className="image-section">
         <img
-          src="/Hero.png"
+          src={process.env.PUBLIC_URL + "/Hero.png"}
           alt="EcoRoute Hero"
           className="hero-image"
         />

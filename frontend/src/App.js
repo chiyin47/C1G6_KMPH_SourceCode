@@ -15,7 +15,7 @@ function App() {
         <div className="logo">
           <Link to="/">
             <img
-              src="/EcoRouteLogo.png"
+              src={process.env.PUBLIC_URL + "/EcoRouteLogo.png"}
               alt="EcoRoute Logo"
               className="logo-image"
             />
